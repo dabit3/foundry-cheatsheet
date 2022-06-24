@@ -312,7 +312,7 @@ forge test --gas-report
 
 ABIs will be located in the `out` directory after running either a build with `forge build` or a deployment with a script.
 
-### Options
+### Test Options
 
 You can get a full list of testing options by running the `--help` command:
 
@@ -427,3 +427,10 @@ We can then perform read operations with cast call:
 cast call $CONTRACT_ADDRESS "getCount()(int)" --rpc-url $RPC_URL
 ```
 
+### Cast Options
+
+You can get a full list of commands by running the `--help` command:
+
+```sh
+cast --help
+```
