@@ -12,6 +12,14 @@ Foundry is made up of three components:
 
 Forge includes both a CLI as well as a [standard library](https://github.com/foundry-rs/forge-std).
 
+For an introduction to Foundry, check out these resources:
+
+- [Foundry vs Hardhat: Differences in performance and developer experience](https://chainstack.com/foundry-hardhat-differences-performance/)
+- [Smart Contract Development with Foundry (Video)](https://www.youtube.com/watch?v=uelA2U9TbgM)
+- [Building and testing smart contracts with Foundry (tutorial)](https://nader.mirror.xyz/6Mn3HjrqKLhHzu2balLPv4SqE5a-oEESl4ycpRkWFsc)
+
+For support, check out the Telegram channel [here](https://t.me/foundry_support)
+
 ## Initializing a new project
 
 Initialize a new project from an empty folder:
