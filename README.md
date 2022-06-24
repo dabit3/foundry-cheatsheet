@@ -56,7 +56,16 @@ You can execute tests by running the `forge test` script.
 forge test
 ```
 
-Any contract with a function that starts with `test` is considered to be a test. Usually, tests will be placed in `src/test` by convention and end with `.t.sol`.
+Any contract with a function that starts with `test` is considered to be a test.
+
+```solidity
+function testAssertEquality() public {
+  int some_int = 1;
+  assertEq(1, some_int);
+}
+```
+
+Usually, tests will be placed in `src/test` by convention and end with `.t.sol`.
 
 Foundry uses `Dappsys Test` (DSTest) to provide basic logging and assertion functionality. It's included in the Forge Standard Library.
 
@@ -214,23 +223,28 @@ vm.warp(1641070800);
 emit log_uint(block.timestamp); // 1641070800
 ```
 
-See a reference of all of the cheatcodes [here](https://book.getfoundry.sh/cheatcodes/)
+See a reference of all of the cheatcodes [here](https://github.com/foundry-rs/foundry/tree/master/forge#cheat-codes)
 
-### Emulating a user
+### Mocking a user
 
-As mentioned earlier, you can mock / emulate a user using either `.prank` or `.startPrank`. Let's take a look at how this might work.
+As mentioned, you can mock / emulate a user using either `.prank` or `.startPrank`. Let's take a look at how this might work.
 
 Let's say we have an ERC721 contract and we'd like to make sure that only the owner of a token could transfer or burn that token. Our tests might look something like this:
 
 ```solidity
 // only the owner can transfer
 function testTransferToken() public {
+    // mint the token to bob's address
     erc721 = new ERC721();
     erc721.mint(bob, 0);
 
+    // emulate bob
     vm.startPrank(bob);
+
+    // transfer to mary
     erc721.safeTransferFrom(bob, mary, 0);
 
+    // check to make sure mary is the new owner
     address owner_of = erc721.ownerOf(0);
     assertEq(mary, owner_of);
 }
@@ -241,6 +255,48 @@ function testBurn() public {
     erc721.mint(bob, 0);
     vm.startPrank(bob);
     erc721.burn(0);
+}
+```
+
+### Fuzzing
+
+Fuzzing allows us to define function parameter types and the testing framework will populate these values at runtime.
+
+If it does find an input that causes the test to fail, it will return it so you can create a regression test.
+
+For instance, we can create a test function to receive a function argument, and use the value in our test without ever having to define what it is.
+
+For this contract:
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.13;
+
+contract HelloWorld {
+  string private greeting;
+  uint public version = 0;
+  
+  constructor (string memory _greeting) {
+    greeting = _greeting;
+  }
+
+  function greet() public view returns(string memory) {
+    return greeting;
+  }
+}
+```
+
+We could create this test:
+
+```solidity
+contract ContractTest is Test {
+  function testFuzzing(string memory _greeting) public {
+      HelloWorld hello = new HelloWorld(_greeting);
+      assertEq(
+          hello.greet(),
+          _greeting
+      );
+  }
 }
 ```
 
@@ -299,13 +355,15 @@ contract ContractScript is Script {
 
 Now we can use this script to deploy our smart contract to either a live or test network. 🚀
 
-Using the address that calls the test contract or the address provided as the sender, `startBroadcast` will have all subsequent calls (at this call depth only) create transactions that can later be signed and sent onchain.
+Using the address that calls the test contract or the address provided as the sender, `startBroadcast` and `startBroadcast(address)` will have all subsequent calls (at this call depth only) create transactions that can later be signed and sent onchain.
 
 `stopBroadcast` stops collecting transactions for later on-chain broadcasting.
 
-You can also use `broadcast`, using the address that calls the test contract or the address provided as the sender, have only the next call (at this call depth) create a transaction that can later be signed and sent onchain.
+You can also use `broadcast`, using the address that calls the test contract, has the next call (at this call depth only) create a transaction that can later be signed and sent onchain
 
-### Deploying locally
+Or `broadcast(address)` using the address provided as the sender, have only the next call (at this call depth) create a transaction that can later be signed and sent onchain.
+
+## Deploying locally
 
 Next start Anvil, the local testnet:
 
@@ -315,7 +373,7 @@ anvil
 
 Once started, Anvil will give you a local RPC endpoint as well as a handful of Private Keys and Accounts that you can use.
 
-## Using cast to perform Ethereum RPC calls
+### Using cast to perform Ethereum RPC calls
 
 We can now use the local RPC along with one of the private keys to deploy locally:
 
@@ -345,7 +403,7 @@ We can then perform read operations with `cast call`:
 cast call $CONTRACT_ADDRESS "getCount()(int)"
 ```
 
-### Deploying to a network
+## Deploying to a network
 
 Now that we've deployed and tested locally, we can deploy to a network.
 
