@@ -10,6 +10,8 @@ Foundry is made up of three components:
 [Cast](https://github.com/foundry-rs/foundry/tree/master/cast): CLI for interacting with EVM smart contracts, sending transactions and getting chain data.   
 [Anvil](https://github.com/foundry-rs/foundry/tree/master/anvil): local Ethereum node, similar to Ganache or Hardhat Network.
 
+Forge includes both a CLI as well as a [standard library](https://github.com/foundry-rs/forge-std).
+
 ## Initializing a new project
 
 Initialize a new project from an empty folder:
