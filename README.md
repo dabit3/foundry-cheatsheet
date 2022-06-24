@@ -216,6 +216,34 @@ emit log_uint(block.timestamp); // 1641070800
 
 See a reference of all of the cheatcodes [here](https://book.getfoundry.sh/cheatcodes/)
 
+### Emulating a user
+
+As mentioned earlier, you can mock / emulate a user using either `.prank` or `.startPrank`. Let's take a look at how this might work.
+
+Let's say we have an ERC721 contract and we'd like to make sure that only the owner of a token could transfer or burn that token. Our tests might look something like this:
+
+```solidity
+// only the owner can transfer
+function testTransferToken() public {
+    erc721 = new ERC721();
+    erc721.mint(bob, 0);
+
+    vm.startPrank(bob);
+    erc721.safeTransferFrom(bob, mary, 0);
+
+    address owner_of = erc721.ownerOf(0);
+    assertEq(mary, owner_of);
+}
+
+// only the owner can burn
+function testBurn() public {
+    erc721 = new ERC721();
+    erc721.mint(bob, 0);
+    vm.startPrank(bob);
+    erc721.burn(0);
+}
+```
+
 ### Gas
 
 You can easily print a pretty looking gas report of your tested functions:
