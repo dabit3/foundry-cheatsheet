@@ -1,5 +1,7 @@
 # Foundry Cheatsheet
 
+![Foundry Cheatsheet](header.jpg)
+
 Foundry GitHub - [https://github.com/foundry-rs](https://github.com/foundry-rs)   
 Foundry Book - [https://book.getfoundry.sh/](https://book.getfoundry.sh/)   
 Installing Foundry - [https://github.com/foundry-rs/foundry#installation](https://github.com/foundry-rs/foundry#installation)
