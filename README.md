@@ -51,7 +51,7 @@ __lib__ - This is similar to __node_modules__
 Forge can remap dependencies to make them easier to import. Forge will automatically try to deduce some remappings for you:
 
 ```sh
-$ forge remappings
+forge remappings
 ds-test/=lib/solmate/lib/ds-test/src/
 forge-std/=lib/forge-std/src/
 ```
