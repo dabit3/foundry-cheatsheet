@@ -386,14 +386,14 @@ anvil
 
 Once started, Anvil will give you a local RPC endpoint as well as a handful of Private Keys and Accounts that you can use.
 
-### Using cast to perform Ethereum RPC calls
-
 We can now use the local RPC along with one of the private keys to deploy locally:
 
 ```sh
 forge script script/Contract.s.sol:ContractScript --fork-url http://localhost:8545 \
 --private-key $PRIVATE_KEY --broadcast
 ```
+
+### Using cast to perform Ethereum RPC calls
 
 Once the contract has been deployed locally, Anvil will log out the contract address.
 
