@@ -78,9 +78,7 @@ function testAssertEquality() public {
 }
 ```
 
-Usually, tests will be placed in a `test` folder and your tests inside the folder by convention and each tests end with `.t.sol`.
-
-![Foundry Cheatsheet](treeImg.png)
+Usually, tests will be placed in `src/test` by convention and end with `.t.sol`.
 
 Foundry uses `Dappsys Test` (DSTest) to provide basic logging and assertion functionality. It's included in the Forge Standard Library.
 
