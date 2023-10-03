@@ -28,7 +28,7 @@ Initialize a new project from an empty folder:
 
 ```sh
 forge init
-```
+``` 
 
 Or define a new folder in which to create your project:
 
