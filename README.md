@@ -337,9 +337,9 @@ forge test --help
 
 Foundry [recently released](https://twitter.com/gakonst/status/1531056739470016512) Solidity Scripting. 
 
-[Scripting](https://book.getfoundry.sh/tutorials/solidity-scripting.html) gives you a lot of control over how you can deploy contracts using Solidity scripts, and I believe is meant to replace [`forge create`](https://book.getfoundry.sh/reference/forge/forge-create.html) which was previously how you could deploy contracts.
+[Scripting](https://book.getfoundry.sh/guides/scripting-with-solidity) gives you a lot of control over how you can deploy contracts using Solidity scripts, and I believe is meant to replace [`forge create`](https://book.getfoundry.sh/reference/forge/forge-create.html) which was previously how you could deploy contracts.
 
-From [Foundry Book](https://book.getfoundry.sh/tutorials/solidity-scripting.html):
+From [Foundry Book](https://book.getfoundry.sh/guides/scripting-with-solidity):
 
 > Solidity scripts are like the scripts you write when working with tools like Hardhat; what makes Solidity scripting different is that they are written in Solidity instead of JavaScript, and they are run on the fast Foundry EVM backend, which provides dry-run capabilities.
 
