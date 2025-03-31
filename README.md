@@ -6,7 +6,7 @@ Foundry GitHub - [https://github.com/foundry-rs](https://github.com/foundry-rs)
 Foundry Book - [https://book.getfoundry.sh/](https://book.getfoundry.sh/)   
 Installing Foundry - [https://github.com/foundry-rs/foundry#installation](https://github.com/foundry-rs/foundry#installation)
 
-Foundry is made up of three components:
+Foundry is made up of three components:   //vv
 
 [Forge](https://github.com/foundry-rs/foundry/tree/master/forge): Ethereum testing framework (like Truffle, Hardhat and DappTools).   
 [Cast](https://github.com/foundry-rs/foundry/tree/master/cast): CLI for interacting with EVM smart contracts, sending transactions and getting chain data.   
@@ -28,7 +28,7 @@ Initialize a new project from an empty folder:
 
 ```sh
 forge init
-```
+``` 
 
 Or define a new folder in which to create your project:
 
